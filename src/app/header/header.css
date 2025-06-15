@@ -1,0 +1,97 @@
+
+.header{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  
+  background-image: url('../../../public/images/header-doa-facil.png'); 
+  width: 100vw;
+  height: 100vh;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px;
+  padding: 10px 30px;
+  
+  width: fit-content;
+  height: min-content;
+
+  border-radius: 20px;
+  
+  background-color: rgba(100, 100, 100, 0.5);
+  backdrop-filter: blur(50px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.header-nav ul li a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 300;
+  padding: 5px 0;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+
+  cursor: pointer;
+}
+
+.header-nav ul li a:hover {
+  color: white;
+}
+
+.header-nav ul li a.active {
+  border-bottom: 2px solid white;
+  font-weight: bold;
+}
+
+
+.link-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+
+  background: linear-gradient(#00000000, #000);
+  width: 100%;
+  height: 400px;
+
+  color: white;
+  
+  h2{
+    font-size: 64px;
+    font-weight: 200;
+
+    margin: 20px;
+    margin-inline: 10%;
+  }
+
+  a{
+    margin-inline: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 200;
+    font-size: 32px;
+
+    width: 200px;
+    height: 65px;
+
+    border-radius: 100px;
+    background-color: rgba(100, 100, 100, 0.5);
+    backdrop-filter: blur(50px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+}
