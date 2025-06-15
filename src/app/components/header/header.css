@@ -2,18 +2,24 @@
 .header{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  
-  background-image: url('../../../public/images/header-doa-facil.png'); 
-  width: 100vw;
+
+  width: 100%;
+  background: #fff;
+
+  background-image: url('../../../../public/images/header-doa-facil.png');
+  background-attachment: fixed;
   height: 100vh;
 }
 
 .header-nav {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+
   display: flex;
   justify-content: center;
-  align-items: center;
 
   margin: 10px;
   padding: 10px 30px;
@@ -26,35 +32,36 @@
   background-color: rgba(100, 100, 100, 0.5);
   backdrop-filter: blur(50px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+
+    li a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 300;
+      padding: 5px 0;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+      }
+      &.active {
+        border-bottom: 2px solid white;
+        font-weight: bold;
+      }
+    }
+  }
 }
 
-.header-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 30px;
-}
 
-.header-nav ul li a {
-  color: #ddd;
-  text-decoration: none;
-  font-size: 1em;
-  font-weight: 300;
-  padding: 5px 0;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-
-  cursor: pointer;
-}
-
-.header-nav ul li a:hover {
-  color: white;
-}
-
-.header-nav ul li a.active {
-  border-bottom: 2px solid white;
-  font-weight: bold;
-}
 
 
 .link-header{
@@ -93,5 +100,13 @@
     background-color: rgba(100, 100, 100, 0.5);
     backdrop-filter: blur(50px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    transition: 250ms;
+
+    cursor: pointer;
+
+    &:hover{
+      background-color: rgba(28, 28, 28, 0.5);
+    }
   }
 }

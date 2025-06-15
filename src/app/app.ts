@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Header } from './header/header';
-import { Acoes } from './acoes/acoes';
-import { Sobre } from './sobre/sobre';
-import { Footer } from './footer/footer';
+import { Header } from './components/header/header';
+import { Acoes } from './components/acoes/acoes';
+import { Sobre } from './components/sobre/sobre';
+import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
