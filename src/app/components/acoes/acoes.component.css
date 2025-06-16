@@ -43,7 +43,7 @@
 
 .categoria-select:hover,
 .categoria-select:focus {
-    border-color: #007bff;
+    border-color: #2ba8d8;
     outline: none;
 }
 
@@ -93,19 +93,39 @@
 }
 
 .ver-mais-btn {
+    align-self: flex-end;
     background-color: white;
     color: black;
     border: 1px solid #a5a5a5;
-    width: 100%;
     padding: 10px 15px;
     border-radius: 55px;
     cursor: pointer;
     font-size: 0.95em;
-    transition: background-color 0.3s ease;
+    position: relative; /* Needed for pseudo-element positioning */
+    overflow: hidden; /* Hides the pseudo-element until it moves into view */
+    z-index: 1; /* Ensures the button content is above the fill */
+    transition: color 0.3s ease; /* Transition for text color */
+}
+
+.ver-mais-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Starts from the bottom */
+    left: 0;
+    width: 100%;
+    height: 0; /* Initially has no height */
+    background-color: #2ba8d8; /* The fill color */
+    transition: height 0.3s ease; /* Smooth transition for height */
+    z-index: -1; /* Places the fill behind the text */
+    border-radius: 55px; /* Matches the button's border-radius */
 }
 
 .ver-mais-btn:hover {
-    background-color: #f0f0f0;
+    color: white; /* Text turns white on hover */
+}
+
+.ver-mais-btn:hover::before {
+    height: 100%; /* Fills the entire button on hover */
 }
 
 @media (max-width: 768px) {
@@ -197,10 +217,16 @@
   right: 15px;
   border: none;
   cursor: pointer;
-  background: white;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(50px);
   border-radius: 100%;
+  transition: 0.3s ease;
 }
 
+.modal-fechar:hover {
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(0px);
+}
 
 /* Animações */
 @keyframes fadeIn {
@@ -237,4 +263,8 @@ input[type="tel"] {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1em;
+}
+
+.form-btn{
+  margin-top: 10px;
 }

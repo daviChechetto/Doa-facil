@@ -3,19 +3,19 @@
   <div class="acoes-header">
     <h1>Ações</h1>
     <div class="acoes-filters">
-      <select class="categoria-select" aria-label="Escolher categoria de ONG">
-        <option value="" disabled selected>Escolher por Categoria</option>
+      <select class="categoria-select" aria-label="Escolher categoria de ONG" [(ngModel)]="categoriaSelecionada">
+        <option value="">Todas as Categorias</option>
         <option value="alimentos">Alimentos</option>
         <option value="saude">Saúde</option>
         <option value="animais">Animais</option>
         <option value="social">Social</option>
         <option value="voluntariado">Voluntariado</option>
-      </select>
+     </select>
     </div>
   </div>
 
   <div class="acoes-grid">
-    <div class="acao-card" *ngFor="let acao of acoes">
+    <div class="acao-card" *ngFor="let acao of acoesFiltradas">
       <div class="card-image">
         <img [src]="acao.imagem" [alt]="acao.titulo">
       </div>
@@ -30,7 +30,7 @@
 <!-- Modal Detalhes da Ação -->
 <div class="modal-overlay" *ngIf="modalAberto" (click)="fecharModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="modal-fechar" (click)="fecharModal()">X</button>
+    <button class="modal-fechar" (click)="fecharModal()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
     <div class="modal-img">
       <img [src]="modalImagem" [alt]="modalTitulo">
     </div>
@@ -39,7 +39,7 @@
       <p>{{ modalDescricao }}</p>
       <div class="modal-botoes">
         <button class="ver-mais-btn" (click)="abrirFormulario()">Doar</button>
-        <button class="ver-mais-btn">Participar</button>
+        <button class="ver-mais-btn" (click)="abrirInscricao()">Participar</button>
       </div>
     </div>
   </div>
@@ -48,18 +48,18 @@
 <!-- Formulário de Doação -->
 <div class="modal-overlay" *ngIf="formularioAberto" (click)="fecharFormulario()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="modal-fechar" (click)="fecharFormulario()">X</button>
+    <button class="modal-fechar" (click)="fecharFormulario()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
     <div class="modal-texto">
       <h2>Preencha o Formulário para Fazer a Doação</h2>
       <form (ngSubmit)="validarFormulario()" #formulario="ngForm">
         <input type="text" name="nome" [(ngModel)]="dados.nome" placeholder="Nome" required><br>
         <input type="email" name="email" [(ngModel)]="dados.email" placeholder="E-mail" required><br>
         <input type="tel" name="telefone" [(ngModel)]="dados.telefone" placeholder="Telefone" required><br>
-        <button class="ver-mais-btn" type="submit">Doar</button>
+        <button class="ver-mais-btn form-btn" type="submit">Doar</button>
       </form>
 
        <div *ngIf="validacaoFormulario" style="margin-top: 20px;">
-        <p>Redireciando para a página de Doação</p>
+        <p>Redirecionando para a página de Doação</p>
       </div>
     </div>
   </div>
@@ -67,14 +67,14 @@
 
 <div class="modal-overlay" *ngIf="inscricaoAberta" (click)="fecharInscricao()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="modal-fechar" (click)="fecharInscricao()">X</button>
+    <button class="modal-fechar" (click)="fecharInscricao()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
     <div class="modal-texto">
       <h2>Preencha o Formulário para Fazer a Inscrição</h2>
       <form (ngSubmit)="validarInscricao()" #formulario="ngForm">
         <input type="text" name="nome" [(ngModel)]="dados.nome" placeholder="Nome" required><br>
         <input type="email" name="email" [(ngModel)]="dados.email" placeholder="E-mail" required><br>
         <input type="tel" name="telefone" [(ngModel)]="dados.telefone" placeholder="Telefone" required><br>
-        <button class="ver-mais-btn" type="submit">Doar</button>
+        <button class="ver-mais-btn form-btn" type="submit">Participar</button>
       </form>
 
       <div *ngIf="validacaoInscricao" style="margin-top: 20px;">

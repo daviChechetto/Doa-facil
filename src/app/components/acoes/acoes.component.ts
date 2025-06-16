@@ -1,18 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; // Importe OnInit
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataShareService } from '../../data-share.service.js'; // Importe o serviço
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-acoes',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './acoes.html',
-  styleUrl: './acoes.css'
+  imports: [CommonModule, FormsModule, InputTextModule],
+  templateUrl: './acoes.component.html',
+  styleUrl: './acoes.component.css'
 })
-export class Acoes {
+export class Acoes implements OnInit { // Implemente OnInit
   modalAberto = false;
   formularioAberto = false;
   exibirQRCode = false;
+
+  validacaoFormulario = false;
+  validacaoInscricao = false;
+  inscricaoAberta = false;
 
   modalTitulo = '';
   modalDescricao = '';
@@ -63,6 +69,23 @@ export class Acoes {
     }
   ];
 
+  constructor(private dataShareService: DataShareService) { } // Injete o serviço
+
+  ngOnInit() {
+    // Quando o componente Acoes for inicializado, envie o length do array para o serviço
+    this.dataShareService.updateAcoesCount(this.acoes.length);
+  }
+
+  categoriaSelecionada: string = '';
+
+  // Para exibir os cards filtrados
+  get acoesFiltradas() {
+    if (!this.categoriaSelecionada) {
+      return this.acoes;
+    }
+    return this.acoes.filter(acao => acao.categoria === this.categoriaSelecionada);
+  }
+
   abrirModal(acao: any) {
     this.modalTitulo = acao.titulo;
     this.modalDescricao = acao.descricao;
@@ -77,12 +100,17 @@ export class Acoes {
   abrirFormulario() {
     this.formularioAberto = true;
     this.modalAberto = false;
-    this.exibirQRCode = false;
     this.dados = { nome: '', email: '', telefone: '' };
   }
 
   fecharFormulario() {
     this.formularioAberto = false;
+  }
+
+  abrirInscricao() {
+    this.inscricaoAberta = true;
+    this.modalAberto = false;
+    this.dados = { nome: '', email: '', telefone: '' };
   }
 
   fecharInscricao() {
@@ -99,7 +127,7 @@ export class Acoes {
   validarInscricao() {
     const { nome, email, telefone } = this.dados;
     if (nome.trim() && email.trim() && telefone.trim()) {
-      this.validacaoFInscricao = true;
+      this.validacaoInscricao = true;
     }
   }
 }
