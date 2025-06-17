@@ -8,7 +8,7 @@
   width: 100%;
   background: #fff;
 
-  background-image: url('../../../../public/images/header-doa-facil.png');
+  background-image: url('../../../assets/header-doa-facil.png');
   background-attachment: fixed;
   height: 100vh;
 }

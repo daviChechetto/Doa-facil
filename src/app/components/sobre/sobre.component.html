@@ -1,6 +1,4 @@
-
 <section class="indicadores">
-    
     <div class="card-indicadores">
         <div class="indicador">
             <span>{{ countContribuildings() }}</span>
@@ -10,18 +8,13 @@
             <span>{{ countAction() }}</span>
             <h5>Ações</h5>
         </div>
-
     </div>
     <h6>Aqui, cada hora doada se transforma em impacto</h6>
-
+    <button (click)="incrementCounterContribuildings()">Incrementar Contribuintes</button>
 </section>
 
-<button (click)="incrementCounterContribuildings()">Aumentar Contribuintes</button>
-
 <section class="impacto">
-    
     <h3>Impacto Esperado</h3>
-    
     <div class="cards-impacto">
         <div class="card">
             <h4>Conexão</h4>
