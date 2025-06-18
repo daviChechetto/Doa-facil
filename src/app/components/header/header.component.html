@@ -1,13 +1,26 @@
 <header id="header" class="header">
 
   <div class="header-nav">
-    <p-menubar [model]="items" styleClass="header-menu"></p-menubar>
+    <p-menubar>
+      <ng-template #start>
+        @for (menu of menus(); track $index) {
+        <p-button [label]="menu.label" styleClass="mr-2"
+        (onClick)="selectMenu($index)"
+        [routerLink]="menu.route"
+          text
+          [severity]="menu.selected ? 'primary': 'secondary'"
+        />
+        }
+      </ng-template>
+
+    </p-menubar>
   </div>
 
 
   <div class="link-header">
       <h2>Nos dê uma força!</h2>
 
-      <a>Se Juntar</a>
+      <a routerLink="cadastro">Se Juntar</a>
+      
   </div>
 </header>
