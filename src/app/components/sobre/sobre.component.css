@@ -13,11 +13,13 @@
         height: 300px;
         width: 100%;
 
-        background: #373737;
+        background:  #373737;
         border-radius: 30px;
+        
 
 
         .indicador{
+            padding: 100px;
             text-align: center;
 
 
@@ -41,7 +43,6 @@
     }
 }
 
-
 .impacto{
     margin-inline: 10%;
 
@@ -61,8 +62,9 @@
             background: linear-gradient(45deg, #383838, #333333);
             box-shadow: 10px 10px 16px #00000080;
 
-            width: 280px;
-            height: 180px;
+            /* Adjusted width and height */
+            width: 380px; /* From 280px */
+            height: 250px; /* From 180px */
 
             color: white;
 
