@@ -57,14 +57,14 @@
 
         width: 100%;
         .card{
-            padding: 50px;
+            padding: 40px;
+            
             border-radius: 30px;
             background: linear-gradient(45deg, #383838, #333333);
             box-shadow: 10px 10px 16px #00000080;
-
-            /* Adjusted width and height */
-            width: 380px; /* From 280px */
-            height: 250px; /* From 180px */
+            
+            width: 380px;
+            height: 250px;
 
             color: white;
 
