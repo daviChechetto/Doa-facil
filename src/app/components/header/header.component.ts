@@ -38,11 +38,12 @@ export class Header {
     },
   ]);
 
-  selectMenu(index: number) {
-    this.menus.update(menus => {
-      menus.forEach((m, i) => (m.selected = index === i));
-      return menus
-    });
+  selected: string = 'inicio';
+
+  selectMenu(section: string) {
+    this.selected = section;
+    const el = document.getElementById(section);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
   
 }

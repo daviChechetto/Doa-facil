@@ -1,26 +1,36 @@
 <header id="header" class="header">
-
   <div class="header-nav">
-    <p-menubar>
-      <ng-template #start>
-        @for (menu of menus(); track $index) {
-        <p-button [label]="menu.label" styleClass="mr-2"
-        (onClick)="selectMenu($index)"
-        [routerLink]="menu.route"
-          text
-          [severity]="menu.selected ? 'primary': 'secondary'"
-        />
-        }
-      </ng-template>
-
-    </p-menubar>
+    <nav class="nav-menu">
+      <a
+        href="#inicio"
+        [class.active]="selected === 'inicio'"
+        (click)="selectMenu('inicio')"
+        >Início</a
+      >
+      <a
+        href="#acoes"
+        [class.active]="selected === 'acoes'"
+        (click)="selectMenu('acoes')"
+        >Ações</a
+      >
+      <a
+        href="#cadastro"
+        [class.active]="selected === 'cadastro'"
+        (click)="selectMenu('cadastro')"
+        >Criar Ações</a
+      >
+      <a
+        href="#sobre"
+        [class.active]="selected === 'sobre'"
+        (click)="selectMenu('sobre')"
+        >Sobre</a
+      >
+    </nav>
   </div>
 
-
   <div class="link-header">
-      <h2>Nos dê uma força!</h2>
+    <h2>Nos dê uma força!</h2>
 
-      <a routerLink="cadastro">Se Juntar</a>
-      
+    <a routerLink="cadastro">Se Juntar</a>
   </div>
 </header>
