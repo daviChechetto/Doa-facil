@@ -1,6 +1,6 @@
 /* estilo principal do footer */
 footer {
-    width: 100%;
+    width: vh;
     min-height: 250px;
     margin-top: 80px;
     border-top-left-radius: 20px;
