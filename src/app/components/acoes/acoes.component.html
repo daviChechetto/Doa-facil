@@ -66,10 +66,12 @@
       <h2>{{ modalTitulo }}</h2>
       <p>{{ modalDescricao }}</p>
       <div class="modal-botoes">
-        <!-- botão abre formulário de doação -->
-        <button class="ver-mais-btn" (click)="abrirFormulario()">Doar</button>
-        <!-- botão abre formulário de inscrição -->
-        <button class="ver-mais-btn" (click)="abrirInscricao()">
+        <!-- botão abre formulário de doação, passando a ação -->
+        <button class="ver-mais-btn" (click)="abrirFormulario({ titulo: modalTitulo })">
+          Doar
+        </button>
+        <!-- botão abre formulário de inscrição, passando a ação -->
+        <button class="ver-mais-btn" (click)="abrirInscricao({ titulo: modalTitulo })">
           Participar
         </button>
       </div>

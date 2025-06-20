@@ -12,16 +12,16 @@ import { InputTextModule } from "primeng/inputtext";
   styleUrl: "./acoes.component.css",
 })
 export class Acoes implements OnInit {
-  // estado dos modais
+  // variáveis que controlam a exibição dos modais
   modalAberto = false;
   formularioAberto = false;
   inscricaoAberta = false;
 
-  // estados de validacao
+  // flags para indicar validação bem-sucedida dos formulários
   validacaoFormulario = false;
   validacaoInscricao = false;
 
-  // dados do modal
+  // dados do modal selecionado
   modalTitulo = "";
   modalDescricao = "";
   modalImagem = "";
@@ -33,13 +33,13 @@ export class Acoes implements OnInit {
     telefone: "",
   };
 
-  // array com doações e participações
-  participacoesEDoacoes: any[] = [];
+  // array que armazena as contribuições e participações
+  contribuicoes: any[] = [];
 
-  // erros de validação por campo
+  // objeto para armazenar mensagens de erro nos campos do formulário
   erros: { [key: string]: string } = {};
 
-  // lista inicial de ações disponíveis
+  // lista de ações disponíveis
   acoes = [
     {
       titulo: "Limpe a Cidade",
@@ -60,8 +60,7 @@ export class Acoes implements OnInit {
       imagem:
         "https://pmc.criciuma.sc.gov.br/webroot/upload/Abordagem_Social_foto_Gregori_Flauzino.jpeg",
       categoria: "social",
-      descricao:
-        "Apoie ações de assistência social a pessoas em situação de rua.",
+      descricao: "Apoie ações de assistência social a pessoas em situação de rua.",
     },
     {
       titulo: "Doe para os Animais Abandonados",
@@ -86,26 +85,31 @@ export class Acoes implements OnInit {
     },
   ];
 
-  // categoria de filtro selecionada
+  // categoria selecionada para filtro
   categoriaSelecionada: string = "";
 
-  constructor(private dataShareService: DataShareService) {}
+  // ação selecionada para formulário
+  acaoSelecionada: string = "";
 
-  // ao inicializar atualiza contagem de ações
+  constructor(private dataShareService: DataShareService) {
+    // carrega as contribuições salvas no storage ao inicializar
+    this.contribuicoes =
+      this.dataShareService.loadContribuintesFromStorage() || [];
+  }
+
   ngOnInit() {
+    // atualiza a contagem de ações no serviço de compartilhamento
     this.dataShareService.updateAcoesCount(this.acoes.length);
   }
 
-  // retorna as ações conforme o filtro
+  // retorna as ações filtradas pela categoria selecionada
   get acoesFiltradas() {
     return this.categoriaSelecionada
-      ? this.acoes.filter(
-          (acao) => acao.categoria === this.categoriaSelecionada
-        )
+      ? this.acoes.filter((acao) => acao.categoria === this.categoriaSelecionada)
       : this.acoes;
   }
 
-  // exibe modal de detalhes da ação
+  // abre o modal com os detalhes da ação selecionada
   abrirModal(acao: any) {
     this.modalTitulo = acao.titulo;
     this.modalDescricao = acao.descricao;
@@ -113,68 +117,72 @@ export class Acoes implements OnInit {
     this.modalAberto = true;
   }
 
-  // fecha modal de detalhes
+  // fecha o modal de detalhes da ação
   fecharModal() {
     this.modalAberto = false;
   }
 
-  // abre formulário de doação
-  abrirFormulario() {
+  // abre o formulário de doação associando a ação selecionada
+  abrirFormulario(acao: any) {
+    this.acaoSelecionada = acao.titulo;
     this.formularioAberto = true;
     this.modalAberto = false;
     this.resetarFormulario();
     this.validacaoFormulario = false;
   }
 
-  // fecha formulário de doação
+  // fecha o formulário de doação e reseta erros e validações
   fecharFormulario() {
     this.formularioAberto = false;
     this.erros = {};
     this.validacaoFormulario = false;
   }
 
-  // abre formulário de inscrição
-  abrirInscricao() {
+  // abre o formulário de inscrição associando a ação selecionada
+  abrirInscricao(acao: any) {
+    this.acaoSelecionada = acao.titulo;
     this.inscricaoAberta = true;
     this.modalAberto = false;
     this.resetarFormulario();
     this.validacaoInscricao = false;
   }
 
-  // fecha formulário de inscrição
+  // fecha o formulário de inscrição e reseta erros e validações
   fecharInscricao() {
     this.inscricaoAberta = false;
     this.erros = {};
     this.validacaoInscricao = false;
   }
 
-  // função auxiliar para resetar os campos do formulário
+  // reseta os campos do formulário e os erros
   resetarFormulario() {
     this.dados = { nome: "", email: "", telefone: "" };
     this.erros = {};
   }
 
-  // valida o formato do email
+  // verifica se o email informado é válido
   emailValido(email: string): boolean {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   }
 
-  // valida o formato do telefone
+  // verifica se o telefone informado possui 10 ou 11 dígitos numéricos
   telefoneValido(telefone: string): boolean {
     const cleaned = telefone.replace(/\D/g, "");
     return cleaned.length === 10 || cleaned.length === 11;
   }
 
-  // valida e processa o formulário de doação
+  // valida o formulário de doação, armazena dados e atualiza validação
   validarFormulario() {
     this.validarCampos();
 
     if (Object.keys(this.erros).length === 0) {
-      this.participacoesEDoacoes.push({ ...this.dados, tipo: "doacao" });
-      this.dataShareService.updateContribuintesCount(
-        this.participacoesEDoacoes.length
-      );
+      this.contribuicoes.push({
+        ...this.dados,
+        tipo: "doacao",
+        acao: this.acaoSelecionada,
+      });
+      this.dataShareService.saveContribuintesToStorage(this.contribuicoes);
       this.validacaoFormulario = true;
       this.resetarFormulario();
     } else {
@@ -182,15 +190,17 @@ export class Acoes implements OnInit {
     }
   }
 
-  // valida e processa o formulário de inscrição
+  // valida o formulário de inscrição, armazena dados e atualiza validação
   validarInscricao() {
     this.validarCampos();
 
     if (Object.keys(this.erros).length === 0) {
-      this.participacoesEDoacoes.push({ ...this.dados, tipo: "participacao" });
-      this.dataShareService.updateContribuintesCount(
-        this.participacoesEDoacoes.length
-      );
+      this.contribuicoes.push({
+        ...this.dados,
+        tipo: "participacao",
+        acao: this.acaoSelecionada,
+      });
+      this.dataShareService.saveContribuintesToStorage(this.contribuicoes);
       this.validacaoInscricao = true;
       this.resetarFormulario();
     } else {
@@ -198,21 +208,22 @@ export class Acoes implements OnInit {
     }
   }
 
-  // valida os campos comuns dos formulários
+  // valida os campos nome email e telefone do formulário
   private validarCampos() {
     const { nome, email, telefone } = this.dados;
     this.erros = {};
 
-    if (!nome.trim()) this.erros["nome"] = "Nome é obrigatório.";
+    if (!nome.trim()) this.erros["nome"] = "Nome é obrigatório";
     if (!email.trim()) {
-      this.erros["email"] = "E-mail é obrigatório.";
+      this.erros["email"] = "E-mail é obrigatório";
     } else if (!this.emailValido(email)) {
-      this.erros["email"] = "E-mail inválido.";
+      this.erros["email"] = "E-mail inválido";
     }
+
     if (!telefone.trim()) {
-      this.erros["telefone"] = "Telefone é obrigatório.";
+      this.erros["telefone"] = "Telefone é obrigatório";
     } else if (!this.telefoneValido(telefone)) {
-      this.erros["telefone"] = "Telefone inválido.";
+      this.erros["telefone"] = "Telefone inválido";
     }
   }
 }
