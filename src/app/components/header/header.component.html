@@ -19,7 +19,9 @@
       >
       <!-- link para a seção criar ações -->
       <a
-        routerLink="cadastro"
+        href="#divulgar"
+        [class.active]="selected === 'divulgar'"
+        (click)="selectMenu('divulgar')"
         >Criar Ação</a
       >
       <!-- link para a seção sobre -->
