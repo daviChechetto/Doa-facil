@@ -19,9 +19,7 @@
       >
       <!-- link para a seção criar ações -->
       <a
-        href="#divulgar"
-        [class.active]="selected === 'divulgar'"
-        (click)="selectMenu('divulgar')"
+        routerLink="cadastro"
         >Criar Ação</a
       >
       <!-- link para a seção sobre -->
@@ -36,7 +34,7 @@
 
   <!-- bloco inferior com título e botão para cadastro -->
   <div class="link-header">
-    <h2>Nos dê uma força!</h2>
+    <h2>Precisa de uma força?</h2>
 
     <!-- botão que navega para a rota cadastro -->
     <a routerLink="cadastro">Se Juntar</a>
