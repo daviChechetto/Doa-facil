@@ -14,18 +14,22 @@ export class Sobre implements OnInit, OnDestroy {
   countContribuildings = signal(0);
 
   private acoesCountSubscription: Subscription | undefined;
+  private contribuintesCountSubscription: Subscription | undefined;
 
-  constructor(private dataShareService: DataShareService) { }
+  constructor(private dataShareService: DataShareService) {}
 
   ngOnInit() {
     this.acoesCountSubscription = this.dataShareService.acoesCount$.subscribe(count => {
       this.countAction.set(count);
     });
+
+    this.contribuintesCountSubscription = this.dataShareService.contribuintesCount$.subscribe(count => {
+      this.countContribuildings.set(count);
+    });
   }
 
   ngOnDestroy() {
-    if (this.acoesCountSubscription) {
-      this.acoesCountSubscription.unsubscribe();
-    }
+    this.acoesCountSubscription?.unsubscribe();
+    this.contribuintesCountSubscription?.unsubscribe();
   }
 }

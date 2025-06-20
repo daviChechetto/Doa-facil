@@ -171,6 +171,7 @@ export class Acoes implements OnInit {
 
     if (Object.keys(this.erros).length === 0) {
       this.participacoesEDoacoes.push({ ...this.dados, tipo: "doacao" });
+      this.dataShareService.updateContribuintesCount(this.participacoesEDoacoes.length);
       this.validacaoFormulario = true;
       this.dados = { nome: "", email: "", telefone: "" };
     } else {
@@ -201,6 +202,7 @@ export class Acoes implements OnInit {
 
     if (Object.keys(this.erros).length === 0) {
       this.participacoesEDoacoes.push({ ...this.dados, tipo: "participacao" });
+      this.dataShareService.updateContribuintesCount(this.participacoesEDoacoes.length);
       this.validacaoInscricao = true;
       this.dados = { nome: "", email: "", telefone: "" };
     } else {
