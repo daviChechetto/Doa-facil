@@ -1,8 +1,10 @@
-<!-- acoes.html -->
+<!-- container principal da seção de ações -->
 <div class="acoes-container">
+  <!-- cabeçalho da seção com título e filtro de categoria -->
   <div class="acoes-header">
     <h1>Ações</h1>
     <div class="acoes-filters">
+      <!-- seletor de categorias de filtro -->
       <select
         class="categoria-select"
         aria-label="Escolher categoria de ONG"
@@ -18,13 +20,16 @@
     </div>
   </div>
 
+  <!-- lista de cards filtrados de ações -->
   <div class="acoes-grid">
+    <!-- cada ação exibida como card individual -->
     <div class="acao-card" *ngFor="let acao of acoesFiltradas">
       <div class="card-image">
         <img [src]="acao.imagem" [alt]="acao.titulo" />
       </div>
       <div class="card-content">
         <h3>{{ acao.titulo }}</h3>
+        <!-- botão que abre o modal com detalhes da ação -->
         <button class="ver-mais-btn" (click)="abrirModal(acao)">
           Ver mais
         </button>
@@ -33,9 +38,10 @@
   </div>
 </div>
 
-<!-- Modal Detalhes da Ação -->
+<!-- modal com detalhes da ação selecionada -->
 <div class="modal-overlay" *ngIf="modalAberto" (click)="fecharModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
+    <!-- botão para fechar o modal -->
     <button class="modal-fechar" (click)="fecharModal()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -49,14 +55,20 @@
         />
       </svg>
     </button>
+
+    <!-- imagem da ação -->
     <div class="modal-img">
       <img [src]="modalImagem" [alt]="modalTitulo" />
     </div>
+
+    <!-- título descrição e botões de ação -->
     <div class="modal-texto">
       <h2>{{ modalTitulo }}</h2>
       <p>{{ modalDescricao }}</p>
       <div class="modal-botoes">
+        <!-- botão abre formulário de doação -->
         <button class="ver-mais-btn" (click)="abrirFormulario()">Doar</button>
+        <!-- botão abre formulário de inscrição -->
         <button class="ver-mais-btn" (click)="abrirInscricao()">
           Participar
         </button>
@@ -65,13 +77,14 @@
   </div>
 </div>
 
-<!-- Formulário de Doação -->
+<!-- modal com formulário de doação -->
 <div
   class="modal-overlay"
   *ngIf="formularioAberto"
   (click)="fecharFormulario()"
 >
   <div class="modal-content" (click)="$event.stopPropagation()">
+    <!-- botão para fechar modal de formulário -->
     <button class="modal-fechar" (click)="fecharFormulario()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -85,9 +98,12 @@
         />
       </svg>
     </button>
+
+    <!-- conteúdo do formulário de doação -->
     <div class="modal-texto">
       <h2>Preencha o Formulário para Fazer a Doação</h2>
       <form (ngSubmit)="validarFormulario()" #formulario="ngForm">
+        <!-- campo nome -->
         <input
           type="text"
           name="nome"
@@ -95,11 +111,9 @@
           placeholder="Nome"
           required
         />
-        <div *ngIf="erros['nome']" style="color: red; font-size: 0.9em">
-          {{ erros["nome"] }}
-        </div>
-        <br />
+        <div *ngIf="erros['nome']" class="form-erro">{{ erros["nome"] }}</div>
 
+        <!-- campo email -->
         <input
           type="email"
           name="email"
@@ -107,11 +121,9 @@
           placeholder="E-mail"
           required
         />
-        <div *ngIf="erros['email']" style="color: red; font-size: 0.9em">
-          {{ erros["email"] }}
-        </div>
-        <br />
+        <div *ngIf="erros['email']" class="form-erro">{{ erros["email"] }}</div>
 
+        <!-- campo telefone -->
         <input
           type="tel"
           name="telefone"
@@ -119,22 +131,27 @@
           placeholder="Telefone"
           required
         />
-        <div *ngIf="erros['telefone']" style="color: red; font-size: 0.9em">
+        <div *ngIf="erros['telefone']" class="form-erro">
           {{ erros["telefone"] }}
         </div>
         <br />
 
+        <!-- botão para enviar o formulário -->
         <button class="ver-mais-btn form-btn" type="submit">Doar</button>
       </form>
-      <div *ngIf="validacaoFormulario" style="margin-top: 20px">
+
+      <!-- mensagem exibida após validação positiva -->
+      <div *ngIf="validacaoFormulario" class="mensagem-sucesso">
         <p>Redirecionando para a página de Doação</p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- modal com formulário de inscrição -->
 <div class="modal-overlay" *ngIf="inscricaoAberta" (click)="fecharInscricao()">
   <div class="modal-content" (click)="$event.stopPropagation()">
+    <!-- botão para fechar modal de inscrição -->
     <button class="modal-fechar" (click)="fecharInscricao()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -148,9 +165,12 @@
         />
       </svg>
     </button>
+
+    <!-- conteúdo do formulário de inscrição -->
     <div class="modal-texto">
       <h2>Preencha o Formulário para Fazer a Inscrição</h2>
       <form (ngSubmit)="validarInscricao()" #formulario="ngForm">
+        <!-- campo nome -->
         <input
           type="text"
           name="nome"
@@ -158,11 +178,9 @@
           placeholder="Nome"
           required
         />
-        <div *ngIf="erros['nome']" style="color: red; font-size: 0.9em">
-          {{ erros["nome"] }}
-        </div>
-        <br />
+        <div *ngIf="erros['nome']" class="form-erro">{{ erros["nome"] }}</div>
 
+        <!-- campo email -->
         <input
           type="email"
           name="email"
@@ -170,11 +188,9 @@
           placeholder="E-mail"
           required
         />
-        <div *ngIf="erros['email']" style="color: red; font-size: 0.9em">
-          {{ erros["email"] }}
-        </div>
-        <br />
+        <div *ngIf="erros['email']" class="form-erro">{{ erros["email"] }}</div>
 
+        <!-- campo telefone -->
         <input
           type="tel"
           name="telefone"
@@ -182,17 +198,19 @@
           placeholder="Telefone"
           required
         />
-        <div *ngIf="erros['telefone']" style="color: red; font-size: 0.9em">
+        <div *ngIf="erros['telefone']" class="form-erro">
           {{ erros["telefone"] }}
         </div>
         <br />
 
+        <!-- botão para enviar formulário de inscrição -->
         <button class="ver-mais-btn form-btn" type="submit">Participar</button>
       </form>
 
-      <div *ngIf="validacaoInscricao" style="margin-top: 20px">
+      <!-- mensagem exibida após validação positiva -->
+      <div *ngIf="validacaoInscricao" class="mensagem-sucesso">
         <p>
-          Inscrição conclúida, você receberá um e-mail contendo mais informações
+          inscrição concluída você receberá um e-mail contendo mais informações
         </p>
       </div>
     </div>

@@ -1,160 +1,170 @@
+/* container principal das acoes */
 .acoes-container {
-    max-width: 100%;
-    margin: auto;
-    padding: 50px 10%;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  margin: auto;
+  padding: 50px 10%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* cabecalho com titulo e seletor */
 .acoes-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
 }
 
 .acoes-header h1 {
-    font-size: 2.2em;
-    color: #333;
-    margin: 0;
+  font-size: 2.2em;
+  color: #333;
+  margin: 0;
 }
 
+/* seletor de categoria */
 .categoria-select {
-    padding: 10px 40px 10px 15px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: white;
-    color: #555;
-    transition: border-color 0.3s ease;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 16px 16px;
+  padding: 10px 40px 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: white;
+  color: #555;
+  transition: border-color 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px 16px;
 }
-
 
 .categoria-select:hover,
 .categoria-select:focus {
-    border-color: #2ba8d8;
-    outline: none;
+  border-color: #2ba8d8;
+  outline: none;
 }
 
+/* grid com os cards das acoes */
 .acoes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
+/* card individual */
 .acao-card {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
 .acao-card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
+/* imagem do card */
 .card-image {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
 }
 
 .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
+/* conteudo textual do card */
 .card-content {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100px;
 }
 
 .card-content h3 {
-    font-size: 1.2em;
-    color: #333;
-    margin: 0 0 15px 0;
+  font-size: 1.2em;
+  color: #333;
+  margin: 0 0 15px 0;
 }
 
+/* botao padrao de acao */
 .ver-mais-btn {
-    align-self: flex-end;
-    background-color: white;
-    color: black;
-    border: 1px solid #a5a5a5;
-    padding: 10px 15px;
-    border-radius: 55px;
-    cursor: pointer;
-    font-size: 0.95em;
-    position: relative; /* Needed for pseudo-element positioning */
-    overflow: hidden; /* Hides the pseudo-element until it moves into view */
-    z-index: 1; /* Ensures the button content is above the fill */
-    transition: color 0.3s ease; /* Transition for text color */
+  align-self: flex-end;
+  background-color: white;
+  color: black;
+  border: 1px solid #a5a5a5;
+  padding: 10px 15px;
+  border-radius: 55px;
+  cursor: pointer;
+  font-size: 0.95em;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
 }
 
 .ver-mais-btn::before {
-    content: '';
-    position: absolute;
-    bottom: 0; /* Starts from the bottom */
-    left: 0;
-    width: 100%;
-    height: 0; /* Initially has no height */
-    background-color: #2ba8d8; /* The fill color */
-    transition: height 0.3s ease; /* Smooth transition for height */
-    z-index: -1; /* Places the fill behind the text */
-    border-radius: 55px; /* Matches the button's border-radius */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #2ba8d8;
+  transition: height 0.3s ease;
+  z-index: -1;
+  border-radius: 55px;
 }
 
 .ver-mais-btn:hover {
-    color: white; /* Text turns white on hover */
+  color: white;
 }
 
 .ver-mais-btn:hover::before {
-    height: 100%; /* Fills the entire button on hover */
+  height: 100%;
 }
 
+/* responsividade para tablet */
 @media (max-width: 768px) {
-    .acoes-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .acoes-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .acoes-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-    }
+  .acoes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
 }
 
+/* responsividade para mobile */
 @media (max-width: 480px) {
-    .acoes-container {
-        padding: 15px;
-    }
+  .acoes-container {
+    padding: 15px;
+  }
 
-    .acoes-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
+  .acoes-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 }
 
+/* sobreposicao e fundo escurecido do modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   display: flex;
@@ -164,23 +174,26 @@
   z-index: 2;
 }
 
+/* conteudo do modal */
 .modal-content {
   background: white;
   border-radius: 10px;
   overflow: hidden;
-  padding: 0px;
+  padding: 0;
   max-width: 600px;
   width: 90%;
   text-align: center;
   animation: slideUp 0.3s ease forwards;
 }
 
+/* imagem no topo do modal */
 .modal-img img {
   width: 100%;
   height: auto;
   display: block;
 }
 
+/* area de texto no modal */
 .modal-texto {
   padding: 25px;
   text-align: center;
@@ -197,6 +210,7 @@
   margin-bottom: 20px;
 }
 
+/* botoes do modal lado a lado */
 .modal-botoes {
   display: flex;
   justify-content: center;
@@ -208,10 +222,9 @@
   min-width: 100px;
 }
 
+/* botao de fechar o modal */
 .modal-fechar {
   position: absolute;
-  display: flex;
-  justify-self: center;
   padding: 5px;
   top: 10px;
   right: 15px;
@@ -228,7 +241,7 @@
   backdrop-filter: blur(0px);
 }
 
-/* Animações */
+/* animacoes de entrada */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -245,15 +258,17 @@
   }
 }
 
-/* (Opcional) animação de saída com uma classe */
+/* animacao de saida */
 .modal-overlay.fechar {
   animation: fadeOut 0.3s ease forwards;
 }
+
 @keyframes fadeOut {
   from { opacity: 1; }
   to { opacity: 0; }
 }
 
+/* campos de entrada do formulario */
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
@@ -265,6 +280,18 @@ input[type="tel"] {
   font-size: 1em;
 }
 
-.form-btn{
+/* margem extra para botao de envio */
+.form-btn {
   margin-top: 10px;
+}
+
+/* estilo para mensagens de erro nos campos do formulario */
+.form-erro {
+  color: red;
+  font-size: 0.9em;
+}
+
+/* estilo para mensagem de sucesso */
+.mensagem-sucesso {
+  margin-top: 20px;
 }

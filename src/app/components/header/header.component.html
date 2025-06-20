@@ -1,24 +1,30 @@
 <header id="header" class="header">
+  <!-- barra de navegação fixa no topo -->
   <div class="header-nav">
+    <!-- menu com links para as seções da página -->
     <nav class="nav-menu">
+      <!-- link para a seção início -->
       <a
         href="#inicio"
         [class.active]="selected === 'inicio'"
         (click)="selectMenu('inicio')"
         >Início</a
       >
+      <!-- link para a seção ações -->
       <a
         href="#acoes"
         [class.active]="selected === 'acoes'"
         (click)="selectMenu('acoes')"
         >Ações</a
       >
+      <!-- link para a seção criar ações -->
       <a
-        href="#cadastro"
-        [class.active]="selected === 'cadastro'"
-        (click)="selectMenu('cadastro')"
-        >Criar Ações</a
+        href="#divulgar"
+        [class.active]="selected === 'divulgar'"
+        (click)="selectMenu('divulgar')"
+        >Criar Ação</a
       >
+      <!-- link para a seção sobre -->
       <a
         href="#sobre"
         [class.active]="selected === 'sobre'"
@@ -28,9 +34,11 @@
     </nav>
   </div>
 
+  <!-- bloco inferior com título e botão para cadastro -->
   <div class="link-header">
     <h2>Nos dê uma força!</h2>
 
+    <!-- botão que navega para a rota cadastro -->
     <a routerLink="cadastro">Se Juntar</a>
   </div>
 </header>

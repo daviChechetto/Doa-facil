@@ -1,3 +1,4 @@
+/* container principal do header com imagem de fundo fixa */
 .header {
   display: flex;
   flex-direction: column;
@@ -14,7 +15,7 @@
   background-position: center;
 }
 
-/* NAV fixa no topo */
+/* nav fixa posicionada no topo da página */
 .header-nav {
   position: fixed;
   top: 20px;
@@ -30,12 +31,13 @@
   justify-content: center;
 }
 
-/* Lista dos links de navegação */
+/* lista horizontal dos links de navegação */
 .nav-menu {
   display: flex;
   gap: 20px;
 }
 
+/* estilo dos links de navegação */
 .nav-menu a {
   color: #373737;
   text-decoration: none;
@@ -49,13 +51,14 @@
   transition: background 0.3s, color 0.3s;
 }
 
+/* estilo para link ativo ou em hover */
 .nav-menu a.active,
 .nav-menu a:hover {
   background-color: #2ba8d8;
   color: #ffffff;
 }
 
-/* Bloco inferior com título e botão */
+/* bloco inferior do header com gradiente, título e botão */
 .link-header {
   display: flex;
   flex-direction: column;
@@ -68,6 +71,7 @@
   color: white;
 }
 
+/* título grande no bloco inferior do header */
 .link-header h2 {
   font-size: 64px;
   font-weight: 200;
@@ -76,6 +80,7 @@
   margin-inline: 10%;
 }
 
+/* estilo do botão/link dentro do bloco inferior */
 .link-header a {
   display: flex;
   justify-content: center;
@@ -100,6 +105,7 @@
   cursor: pointer;
 }
 
+/* efeito hover para o botão/link */
 .link-header a:hover {
   background-color: rgba(28, 28, 28, 0.5);
 }

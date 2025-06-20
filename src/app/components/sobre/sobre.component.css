@@ -1,80 +1,92 @@
-.indicadores{
-    margin-inline: 10%;
-    margin-block: 60px;
-
-    .card-indicadores{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-
-        box-shadow: 10px 10px 16px #00000080;
-
-        height: 300px;
-        width: 100%;
-
-        background:  #373737;
-        border-radius: 30px;
-        
-
-
-        .indicador{
-            padding: 100px;
-            text-align: center;
-
-
-            span{
-                color: #2ba8d8;
-                font-size: 5rem;
-            }
-
-            h5{
-                color: white;
-                font-size: 1.5rem;
-                margin: 0;
-            }
-        }
-    }
-    h6{
-        color: white;
-        text-align: center;
-        font-size: 1rem;
-        font-weight: 500;
-    }
+.indicadores {
+  margin-inline: 10%;
+  margin-block: 60px;
 }
 
-.impacto{
-    margin-inline: 10%;
+/* área que agrupa os cards indicadores em linha, centralizados, com espaçamento e sombra */
+.indicadores .card-indicadores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 
-    h3{
-        font-size: 32px;
-        color: white;
-    }
-    .cards-impacto{
-        display: flex;
-        justify-content: center;
-        gap: 60px;
+  box-shadow: 10px 10px 16px #00000080;
 
-        width: 100%;
-        .card{
-            padding: 40px;
-            
-            border-radius: 30px;
-            background: linear-gradient(45deg, #383838, #333333);
-            box-shadow: 10px 10px 16px #00000080;
-            
-            width: 380px;
-            height: 250px;
+  height: 300px;
+  width: 100%;
 
-            color: white;
+  background: #373737;
+  border-radius: 30px;
+}
 
-            h4{
-                font-size: 2rem;
-                margin: 0;
-            }
-            p{
-                font-size: 1rem;
-            }
-        }
-    }
+/* estilo individual para cada indicador dentro do container de cards */
+.indicadores .card-indicadores .indicador {
+  padding: 100px;
+  text-align: center;
+}
+
+/* estilo do número ou ícone destacado do indicador */
+.indicadores .card-indicadores .indicador span {
+  color: #2ba8d8;
+  font-size: 5rem;
+}
+
+/* título do indicador com cor branca e tamanho adequado */
+.indicadores .card-indicadores .indicador h5 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* subtítulo ou descrição abaixo dos indicadores, centralizado e com cor branca */
+.indicadores h6 {
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* container principal do impacto com margens laterais */
+.impacto {
+  margin-inline: 10%;
+}
+
+/* título da seção impacto com tamanho e cor */
+.impacto h3 {
+  font-size: 32px;
+  color: white;
+}
+
+/* container para agrupar os cards de impacto em linha, centralizados e espaçados */
+.impacto .cards-impacto {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+
+  width: 100%;
+}
+
+/* estilo individual dos cards de impacto */
+.impacto .cards-impacto .card {
+  padding: 40px;
+  
+  border-radius: 30px;
+  background: linear-gradient(45deg, #383838, #333333);
+  box-shadow: 10px 10px 16px #00000080;
+  
+  width: 380px;
+  height: 250px;
+
+  color: white;
+}
+
+/* título do card de impacto */
+.impacto .cards-impacto .card h4 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* parágrafo dentro do card de impacto */
+.impacto .cards-impacto .card p {
+  font-size: 1rem;
 }
