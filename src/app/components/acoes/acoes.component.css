@@ -295,3 +295,15 @@ input[type="tel"] {
 .mensagem-sucesso {
   margin-top: 20px;
 }
+
+.qr-code-container {
+  margin-top: 20px;
+  width: 200px;
+  height: 200px;
+  background-image: url('../../../assets/qr-code.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: auto;
+  margin-right: auto;
+}
