@@ -1,1 +1,125 @@
-<p>cadastro works!</p>
+<div class="cadastro-container">
+  <form
+    class="formulario-cadastro"
+    (ngSubmit)="enviarFormulario(form)"
+    #form="ngForm"
+    novalidate
+  >
+    <h2>Preencha o Formulário para se inscrever</h2>
+
+    <label for="nome">Nome da ONG</label>
+    <input
+      type="text"
+      id="nome"
+      name="nome"
+      [(ngModel)]="ong.nome"
+      required
+      #nome="ngModel"
+      [class.ng-touched]="nome.touched"
+      [class.ng-invalid]="nome.invalid && nome.touched"
+    />
+    <div *ngIf="nome.invalid && nome.touched" class="mensagem-erro">
+      Nome da ONG é obrigatório.
+    </div>
+
+    <label for="cnpj">CNPJ</label>
+    <input
+      type="text"
+      id="cnpj"
+      name="cnpj"
+      [(ngModel)]="ong.cnpj"
+      required
+      pattern="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$"
+      #cnpj="ngModel"
+      [class.ng-touched]="cnpj.touched"
+      [class.ng-invalid]="cnpj.invalid && cnpj.touched"
+      placeholder="00.000.000/0000-00"
+    />
+    <div *ngIf="cnpj.invalid && cnpj.touched" class="mensagem-erro">
+      CNPJ inválido. Use o formato 00.000.000/0000-00.
+    </div>
+
+    <label for="data">Data de Fundação</label>
+    <input
+      type="date"
+      id="data"
+      name="dataFundacao"
+      [(ngModel)]="ong.dataFundacao"
+      required
+      #dataFundacao="ngModel"
+      [class.ng-touched]="dataFundacao.touched"
+      [class.ng-invalid]="dataFundacao.invalid && dataFundacao.touched"
+    />
+    <div *ngIf="dataFundacao.invalid && dataFundacao.touched" class="mensagem-erro">
+      Data de fundação é obrigatória.
+    </div>
+
+    <label for="telefone">Telefone</label>
+    <input
+      type="tel"
+      id="telefone"
+      name="telefone"
+      [(ngModel)]="ong.telefone"
+      required
+      pattern="^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$"
+      #telefone="ngModel"
+      [class.ng-touched]="telefone.touched"
+      [class.ng-invalid]="telefone.invalid && telefone.touched"
+      placeholder="(00) 00000-0000"
+    />
+    <div *ngIf="telefone.invalid && telefone.touched" class="mensagem-erro">
+      Telefone inválido. Use o formato (00) 00000-0000.
+    </div>
+
+    <label for="area">Área de atuação</label>
+    <select
+      id="area"
+      name="area"
+      [(ngModel)]="ong.area"
+      required
+      #area="ngModel"
+      [class.ng-touched]="area.touched"
+      [class.ng-invalid]="area.invalid && area.touched"
+    >
+      <option value="" disabled selected>Escolher a Categoria</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria">
+        {{ categoria }}
+      </option>
+    </select>
+    <div *ngIf="area.invalid && area.touched" class="mensagem-erro">
+      Selecione uma área de atuação.
+    </div>
+
+    <label for="missoes">Missão, Visão e Valores</label>
+    <textarea
+      id="missoes"
+      name="missoes"
+      rows="5"
+      [(ngModel)]="ong.missoes"
+    ></textarea>
+
+    <label for="imagemCapa">Link da Imagem da Capa</label>
+    <input
+      type="url"
+      id="imagemCapa"
+      name="imagemCapa"
+      [(ngModel)]="ong.imagemCapa"
+      required
+      #imagemCapa="ngModel"
+      [class.ng-touched]="imagemCapa.touched"
+      [class.ng-invalid]="imagemCapa.invalid && imagemCapa.touched"
+      placeholder="https://exemplo.com/imagem.jpg"
+    />
+    <div *ngIf="imagemCapa.invalid && imagemCapa.touched" class="mensagem-erro">
+      Informe uma URL válida para a imagem da capa.
+    </div>
+
+    <button type="submit" class="btn-cadastrar">
+      Cadastrar-se
+    </button>
+
+    <div *ngIf="enviado" class="mensagem-sucesso">
+      <p>Cadastro realizado com sucesso!</p>
+    </div>
+  </form>
+</div>
