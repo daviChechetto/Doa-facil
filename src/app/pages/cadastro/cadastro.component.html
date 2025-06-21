@@ -1,12 +1,16 @@
+<!-- container principal do formulário de cadastro -->
 <div class="cadastro-container">
+  <!-- formulário com ngModel e validação -->
   <form
     class="formulario-cadastro"
     (ngSubmit)="enviarFormulario(form)"
     #form="ngForm"
     novalidate
   >
+    <!-- título do formulário -->
     <h2>Preencha o Formulário para se inscrever</h2>
 
+    <!-- campo nome da ong com validação obrigatória -->
     <label for="nome">Nome da ONG</label>
     <input
       type="text"
@@ -22,6 +26,7 @@
       Nome da ONG é obrigatório.
     </div>
 
+    <!-- campo cnpj com validação de formato -->
     <label for="cnpj">CNPJ</label>
     <input
       type="text"
@@ -39,6 +44,7 @@
       CNPJ inválido. Use o formato 00.000.000/0000-00.
     </div>
 
+    <!-- campo data de fundação com validação obrigatória -->
     <label for="data">Data de Fundação</label>
     <input
       type="date"
@@ -54,6 +60,7 @@
       Data de fundação é obrigatória.
     </div>
 
+    <!-- campo telefone com validação de formato -->
     <label for="telefone">Telefone</label>
     <input
       type="tel"
@@ -71,6 +78,7 @@
       Telefone inválido. Use o formato (00) 00000-0000.
     </div>
 
+    <!-- campo select para categoria da ong com opções dinâmicas -->
     <label for="area">Área de atuação</label>
     <select
       id="area"
@@ -90,6 +98,7 @@
       Selecione uma área de atuação.
     </div>
 
+    <!-- campo de texto para missão visão e valores -->
     <label for="missoes">Missão, Visão e Valores</label>
     <textarea
       id="missoes"
@@ -98,6 +107,7 @@
       [(ngModel)]="ong.missoes"
     ></textarea>
 
+    <!-- campo para url da imagem da capa com validação -->
     <label for="imagemCapa">Link da Imagem da Capa</label>
     <input
       type="url"
@@ -114,10 +124,12 @@
       Informe uma URL válida para a imagem da capa.
     </div>
 
+    <!-- botão de envio do formulário -->
     <button type="submit" class="btn-cadastrar">
       Cadastrar-se
     </button>
 
+    <!-- mensagem exibida após envio com sucesso -->
     <div *ngIf="enviado" class="mensagem-sucesso">
       <p>Cadastro realizado com sucesso!</p>
     </div>

@@ -12,38 +12,49 @@ import { InputTextModule } from "primeng/inputtext";
   styleUrl: "./acoes.component.css",
 })
 export class Acoes implements OnInit {
+  // controle dos modais abertos
   modalAberto = false;
   formularioAberto = false;
   inscricaoAberta = false;
 
+  // controle de validações dos formulários
   validacaoFormulario = false;
   validacaoInscricao = false;
 
+  // dados do modal de exibição de detalhes
   modalTitulo = "";
   modalDescricao = "";
   modalImagem = "";
 
+  // dados do formulário de doação e participação
   dados = {
     nome: "",
     email: "",
     telefone: "",
   };
 
+  // lista de contribuições registradas
   contribuicoes: any[] = [];
+
+  // objeto com mensagens de erro para validação de formulário
   erros: { [key: string]: string } = {};
 
+  // lista completa de ações visíveis no componente
   acoes: any[] = [];
 
+  // filtros de exibição
   categoriaSelecionada: string = "";
   acaoSelecionada: string = "";
 
+  // injeta o serviço de compartilhamento de dados
   constructor(private dataShareService: DataShareService) {
     this.contribuicoes =
       this.dataShareService.loadContribuintesFromStorage() || [];
   }
 
+  // inicializa o componente com ações fixas e personalizadas
   ngOnInit() {
-    // Ações fixas
+    // ações fixas pré cadastradas
     const acoesFixas = [
       {
         titulo: "Limpe a Cidade",
@@ -89,22 +100,24 @@ export class Acoes implements OnInit {
       },
     ];
 
-    // Ações personalizadas
+    // carrega ações cadastradas dinamicamente
     const acoesPersonalizadas = this.dataShareService.carregarAcoesPersonalizadas();
 
-    // Mesclar as duas listas
+    // mescla ações fixas com personalizadas
     this.acoes = [...acoesFixas, ...acoesPersonalizadas];
 
-    // Atualiza a contagem
+    // atualiza contagem de ações no serviço
     this.dataShareService.updateAcoesCount(this.acoes.length);
   }
 
+  // retorna ações filtradas pela categoria selecionada
   get acoesFiltradas() {
     return this.categoriaSelecionada
       ? this.acoes.filter((acao) => acao.categoria === this.categoriaSelecionada)
       : this.acoes;
   }
 
+  // abre o modal de visualização de detalhes da ação
   abrirModal(acao: any) {
     this.modalTitulo = acao.titulo;
     this.modalDescricao = acao.descricao;
@@ -112,10 +125,12 @@ export class Acoes implements OnInit {
     this.modalAberto = true;
   }
 
+  // fecha o modal de visualização
   fecharModal() {
     this.modalAberto = false;
   }
 
+  // abre o formulário de doação
   abrirFormulario(acao: any) {
     this.acaoSelecionada = acao.titulo;
     this.formularioAberto = true;
@@ -124,12 +139,14 @@ export class Acoes implements OnInit {
     this.validacaoFormulario = false;
   }
 
+  // fecha o formulário de doação
   fecharFormulario() {
     this.formularioAberto = false;
     this.erros = {};
     this.validacaoFormulario = false;
   }
 
+  // abre o formulário de participação
   abrirInscricao(acao: any) {
     this.acaoSelecionada = acao.titulo;
     this.inscricaoAberta = true;
@@ -138,27 +155,32 @@ export class Acoes implements OnInit {
     this.validacaoInscricao = false;
   }
 
+  // fecha o formulário de participação
   fecharInscricao() {
     this.inscricaoAberta = false;
     this.erros = {};
     this.validacaoInscricao = false;
   }
 
+  // reseta os dados e erros dos formulários
   resetarFormulario() {
     this.dados = { nome: "", email: "", telefone: "" };
     this.erros = {};
   }
 
+  // valida formato do email com regex
   emailValido(email: string): boolean {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   }
 
+  // valida formato e tamanho do telefone
   telefoneValido(telefone: string): boolean {
     const cleaned = telefone.replace(/\D/g, "");
     return cleaned.length === 10 || cleaned.length === 11;
   }
 
+  // executa validação e salva dados de doação
   validarFormulario() {
     this.validarCampos();
 
@@ -176,6 +198,7 @@ export class Acoes implements OnInit {
     }
   }
 
+  // executa validação e salva dados de participação
   validarInscricao() {
     this.validarCampos();
 
@@ -193,6 +216,7 @@ export class Acoes implements OnInit {
     }
   }
 
+  // valida campos obrigatórios e atualiza mensagens de erro
   private validarCampos() {
     const { nome, email, telefone } = this.dados;
     this.erros = {};
