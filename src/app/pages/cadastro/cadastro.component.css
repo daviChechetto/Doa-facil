@@ -1,0 +1,136 @@
+/* container principal da página de cadastro com fundo animado em gradiente */
+.cadastro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2ba8d8, #79c2e5, #d6eff9);
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+}
+
+/* animação do fundo gradiente em movimento */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* formulário de cadastro centralizado com bordas arredondadas */
+.formulario-cadastro {
+  background-color: #fff;
+  margin: 20px;
+  padding: 40px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+}
+
+/* título do formulário centralizado */
+.formulario-cadastro h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+}
+
+/* estilo dos rótulos dos campos */
+.formulario-cadastro label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+/* estilo dos campos de entrada select e textarea */
+.formulario-cadastro input,
+.formulario-cadastro select,
+.formulario-cadastro textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* destaque visual em vermelho para campos inválidos já tocados */
+.formulario-cadastro input.ng-invalid.ng-touched,
+.formulario-cadastro select.ng-invalid.ng-touched,
+.formulario-cadastro textarea.ng-invalid.ng-touched {
+  border-color: #d9534f;
+}
+
+/* mensagem de erro exibida abaixo dos campos inválidos */
+.mensagem-erro {
+  color: #d9534f;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+/* botão cadastrar com estilo padronizado centralizado e animação hover */
+.btn-cadastrar {
+  display: block;
+  margin: 20px auto 0 auto;
+  background-color: white;
+  color: black;
+  border: 1px solid #a5a5a5;
+  padding: 12px 28px;
+  border-radius: 55px;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1;
+  user-select: none;
+  white-space: nowrap;
+  min-width: 140px;
+}
+
+/* efeito de fundo azul animado ao passar o mouse sobre o botão */
+.btn-cadastrar::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #2ba8d8;
+  transition: height 0.3s ease;
+  z-index: -1;
+  border-radius: 55px;
+}
+
+/* alteração da cor do texto quando o botão é focado */
+.btn-cadastrar:hover {
+  color: white;
+}
+
+/* animação do fundo azul do botão quando em hover */
+.btn-cadastrar:hover::before {
+  height: 100%;
+}
+
+/* estilo da mensagem de sucesso após cadastro */
+.mensagem-sucesso {
+  margin-top: 20px;
+  color: #4caf50cc;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1rem;
+}

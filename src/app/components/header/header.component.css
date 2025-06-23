@@ -1,109 +1,111 @@
-
-.header{
+/* container principal do header com imagem de fundo fixa */
+.header {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
 
   width: 100%;
-  background: #fff;
+  height: 100vh;
 
+  background: #fff;
   background-image: url('../../../assets/header-doa-facil.png');
   background-attachment: fixed;
-  height: 100vh;
+  background-size: cover;
+  background-position: center;
 }
 
-
+/* nav fixa posicionada no topo da página */
 .header-nav {
   position: fixed;
-  top: 0;
-  z-index: 5;
+  top: 20px;
+  z-index: 999;
 
-  margin: 10px;
-  padding: 10px 30px;
+  background-color: rgba(217, 217, 217, 0.3);
+  backdrop-filter: blur(30px);
 
-  width: fit-content;
-  height: min-content;
-
-  border-radius: 20px;
-
-  background-color: #d9d9d94d;
-  backdrop-filter: blur(50px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  padding: 10px 20px;
 
   display: flex;
   justify-content: center;
-
-  p-menubar {
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    color: white;
-    font-size: 20px;
-    font-weight: 300;
-
-    
-    .p-menubar-start {
-      gap: 30px;
-    }
-
-    .p-menuitem-link.p-focus {
-      border-bottom: 2px solid #ffffff;
-      font-weight: bold;
-    }
-  }
 }
 
+/* lista horizontal dos links de navegação */
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
 
+/* estilo dos links de navegação */
+.nav-menu a {
+  color: #373737;
+  text-decoration: none;
 
+  font-size: 18px;
+  font-weight: 400;
 
+  padding: 8px 16px;
+  border-radius: 20px;
 
-.link-header{
+  transition: background 0.3s, color 0.3s;
+}
+
+/* estilo para link ativo ou em hover */
+.nav-menu a.active,
+.nav-menu a:hover {
+  background-color: #2ba8d8;
+  color: #ffffff;
+}
+
+/* bloco inferior do header com gradiente, título e botão */
+.link-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
 
   background: linear-gradient(#00000000, #000);
   width: 100%;
   height: 400px;
 
   color: white;
-  
-  h2{
-    font-size: 64px;
-    font-weight: 200;
+}
 
-    margin: 20px;
-    margin-inline: 10%;
-  }
+/* título grande no bloco inferior do header */
+.link-header h2 {
+  font-size: 64px;
+  font-weight: 200;
 
-  a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    font-weight: 200;
-    font-size: 32px;
-    color: white;
-    
-    width: 200px;
-    height: 65px;
-    
-    margin-inline: 10%;
-    border-radius: 100px;
+  margin: 20px;
+  margin-inline: 10%;
+}
 
-    background-color: rgba(100, 100, 100, 0.5);
-    backdrop-filter: blur(50px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+/* estilo do botão/link dentro do bloco inferior */
+.link-header a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    transition: 250ms;
-    text-decoration: none;
-    cursor: pointer;
+  font-weight: 200;
+  font-size: 32px;
+  color: white;
 
-    &:hover{
-      background-color: rgba(28, 28, 28, 0.5);
-    }
-  }
+  width: 200px;
+  height: 65px;
+
+  margin-inline: 10%;
+  border-radius: 100px;
+
+  background-color: rgba(100, 100, 100, 0.5);
+  backdrop-filter: blur(50px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+  transition: 250ms;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* efeito hover para o botão/link */
+.link-header a:hover {
+  background-color: rgba(28, 28, 28, 0.5);
 }

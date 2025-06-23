@@ -1,5 +1,6 @@
+/* estilo principal do footer */
 footer {
-    width: 100%;
+    width: vh;
     min-height: 250px;
     margin-top: 80px;
     border-top-left-radius: 20px;
@@ -16,13 +17,14 @@ footer {
     text-align: center;
 }
 
+/* estilo do título principal no footer */
 footer h3 {
     text-align: center;
     font-size: 32px;
     font-weight: 200;
-    margin-bottom: 30px;
 }
 
+/* container que envolve o conteúdo do footer */
 .footer-content-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -32,6 +34,7 @@ footer h3 {
     max-width: 900px;
 }
 
+/* bloco de realização e projeto com alinhamento central */
 .realizacao {
     display: flex;
     flex-direction: column;
@@ -39,23 +42,27 @@ footer h3 {
     margin-bottom: 20px;
 }
 
+/* título de cada bloco dentro do footer */
 .realizacao h4 {
     font-size: 1.2rem;
-    margin-bottom: 15px;
+    margin: 15px;
     font-weight: normal;
 }
 
+/* estilo para listas sem marcadores e sem espaçamentos */
 .realizacao ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+/* itens da lista com espaçamento inferior */
 .realizacao ul li {
     font-size: 1rem;
     margin-bottom: 5px;
 }
 
+/* estilo da div que substitui a imagem da logo no footer */
 .logo-background {
     width: 250px; 
     height: 87px; 

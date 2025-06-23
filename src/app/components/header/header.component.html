@@ -1,26 +1,44 @@
 <header id="header" class="header">
-
+  <!-- barra de navegação fixa no topo -->
   <div class="header-nav">
-    <p-menubar>
-      <ng-template #start>
-        @for (menu of menus(); track $index) {
-        <p-button [label]="menu.label" styleClass="mr-2"
-        (onClick)="selectMenu($index)"
-        [routerLink]="menu.route"
-          text
-          [severity]="menu.selected ? 'primary': 'secondary'"
-        />
-        }
-      </ng-template>
-
-    </p-menubar>
+    <!-- menu com links para as seções da página -->
+    <nav class="nav-menu">
+      <!-- link para a seção início -->
+      <a
+        href="#inicio"
+        [class.active]="selected === 'inicio'"
+        (click)="selectMenu('inicio')"
+        >Início</a
+      >
+      <!-- link para a seção ações -->
+      <a
+        href="#acoes"
+        [class.active]="selected === 'acoes'"
+        (click)="selectMenu('acoes')"
+        >Ações</a
+      >
+      <!-- link para a seção criar ações -->
+      <a
+        href="#divulgar"
+        [class.active]="selected === 'divulgar'"
+        (click)="selectMenu('divulgar')"
+        >Criar Ação</a
+      >
+      <!-- link para a seção sobre -->
+      <a
+        href="#sobre"
+        [class.active]="selected === 'sobre'"
+        (click)="selectMenu('sobre')"
+        >Sobre</a
+      >
+    </nav>
   </div>
 
-
+  <!-- bloco inferior com título e botão para cadastro -->
   <div class="link-header">
-      <h2>Nos dê uma força!</h2>
+    <h2>Precisa de uma força?</h2>
 
-      <a routerLink="cadastro">Se Juntar</a>
-      
+    <!-- botão que navega para a rota cadastro -->
+    <a routerLink="cadastro">Se Juntar</a>
   </div>
 </header>

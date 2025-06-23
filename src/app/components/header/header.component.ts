@@ -1,20 +1,15 @@
-import { Component, signal  } from '@angular/core';
-import { ToolbarModule } from 'primeng/toolbar';
-import { ButtonModule } from 'primeng/button';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-
-import { MenuItem } from 'primeng/api';
-import { MenubarModule } from 'primeng/menubar';
-
 
 @Component({
   selector: 'app-header',
-  imports: [ToolbarModule, ButtonModule, MenubarModule, RouterLink],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
+  standalone: true
 })
 export class Header {
+  // sinal que mantém o estado do menu com as opções e o item selecionado
   menus = signal<any[]>([
     {
       label: 'Início',
@@ -28,7 +23,7 @@ export class Header {
     },
     {
       label: 'Criar Ações',
-      route: 'cadastro',
+      route: 'divulgar',
       selected: false,
     },
     {
@@ -38,11 +33,13 @@ export class Header {
     },
   ]);
 
-  selectMenu(index: number) {
-    this.menus.update(menus => {
-      menus.forEach((m, i) => (m.selected = index === i));
-      return menus
-    });
+  // guarda o nome da seção atualmente selecionada
+  selected: string = 'inicio';
+
+  // método que atualiza a seção selecionada e faz o scroll suave para o elemento
+  selectMenu(section: string) {
+    this.selected = section;
+    const el = document.getElementById(section);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
-  
 }
